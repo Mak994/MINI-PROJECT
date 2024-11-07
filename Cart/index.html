@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart VirtualVista</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cart-container">
+    <h2 class="cart-title">Your Cart</h2>
+    <div class="cart-items">
+        <div class="cart-item">
+            <img src="/Apple-Vision-PRO-PNG.png" alt="VR Headset" class="item-image">
+            <div class="item-details">
+                <h3>VR Headset Model X</h3>
+                <p class="item-price">Rs. <span id="item-price">2,49,999.00</span></p>
+                <div class="item-quantity">
+                    <button class="quantity-btn" id="decrease-btn">-</button>
+                    <span class="quantity-number" id="quantity-number">1</span>
+                    <button class="quantity-btn" id="increase-btn">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-total">
+        <h3>Total: Rs. <span id="total-price">2,49,999.00</span></h3>
+        <a class="checkout-btn" href="./checkoutpage/checkout.html" style="text-decoration: none;">Proceed to Checkout</a>
+    </div>
+</div>
+
+<!-- JavaScript for dynamic price calculation -->
+<script>
+    const basePrice = 249999; // Base price of the item
+    let quantity = 1; // Default quantity
+
+    const quantityNumber = document.getElementById("quantity-number");
+    const totalPriceElement = document.getElementById("total-price");
+
+    // Function to update the total price
+    function updateTotalPrice() {
+        const totalPrice = basePrice * quantity;
+        totalPriceElement.textContent = totalPrice.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+    }
+
+    // Event listener for increasing the quantity
+    document.getElementById("increase-btn").addEventListener("click", function() {
+        quantity++;
+        quantityNumber.textContent = quantity;
+        updateTotalPrice();
+    });
+
+    // Event listener for decreasing the quantity
+    document.getElementById("decrease-btn").addEventListener("click", function() {
+        if (quantity > 1) {
+            quantity--;
+            quantityNumber.textContent = quantity;
+            updateTotalPrice();
+        }
+    });
+
+    // Initialize the total price
+    updateTotalPrice();
+</script>
+
+</html>
